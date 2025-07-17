@@ -6,7 +6,7 @@ const staffSchema = new mongoose.Schema(
     email: { type: String, required: true, unique: true },
     phone: { type: String },
     position: { type: String, required: true },
-    departement: {
+    department: {
       type: String,
       required: true,
       enum: [
