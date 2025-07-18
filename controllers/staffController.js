@@ -72,6 +72,20 @@ exports.updateStaff = async (req, res) => {
   }
 };
 
+// GET A STAFF MEMBER BY ID
+exports.getStaffById = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const staff = await Staff.findById(id);
+    if (!staff) {
+      return res.status(404).json({ message: "Staff member not found" });
+    }
+    res.json(staff);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
 // DELETE A STAFF MEMBER
 exports.deleteStaff = async (req, res) => {
   try {
@@ -80,7 +94,7 @@ exports.deleteStaff = async (req, res) => {
     if (!staff) {
       return res.status(404).json({ message: "Staff member not found" });
     }
-    res.json({ message: "Staff member deleted successfully" });
+    res.status(204).send();
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
